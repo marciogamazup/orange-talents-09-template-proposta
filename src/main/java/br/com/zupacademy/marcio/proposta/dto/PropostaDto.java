@@ -1,13 +1,16 @@
 package br.com.zupacademy.marcio.proposta.dto;
 
+import br.com.zupacademy.marcio.proposta.commons.errors.exceptions.ExceptionCpfCnpjJaExiste;
 import br.com.zupacademy.marcio.proposta.commons.validators.CpfCnpj;
 import br.com.zupacademy.marcio.proposta.entities.Proposta;
+import br.com.zupacademy.marcio.proposta.repository.PropostaRepository;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
+import java.util.Optional;
 
 public class PropostaDto {
 
@@ -61,7 +64,14 @@ public class PropostaDto {
         return salario;
     }
 
-    public Proposta toModel() {
+    public Proposta toModel(PropostaRepository propostaRepository) {
+
+        Optional<Proposta> proposta = propostaRepository.findBycpfcnpj(cpfcnpj);
+
+        if(proposta.isPresent()) {
+            throw new ExceptionCpfCnpjJaExiste();
+        }
+
         return new Proposta(cpfcnpj, email, nome, endereco, salario);
     }
 }

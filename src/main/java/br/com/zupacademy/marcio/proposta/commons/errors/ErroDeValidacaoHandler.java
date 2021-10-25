@@ -1,5 +1,6 @@
 package br.com.zupacademy.marcio.proposta.commons.errors;
 
+import br.com.zupacademy.marcio.proposta.commons.errors.exceptions.ExceptionCpfCnpjJaExiste;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -46,6 +47,15 @@ public class ErroDeValidacaoHandler {
 
         ErroDeFormularioDto erroDeFormularioDto = new ErroDeFormularioDto(fieldDescription,errorDescription);
         return new ResponseEntity<>(erroDeFormularioDto, new HttpHeaders(),HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(value = {ExceptionCpfCnpjJaExiste.class})
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErroDeFormularioDto CpfCnpjJaExisteException(ExceptionCpfCnpjJaExiste e, WebRequest request) {
+
+        ErroDeFormularioDto erroDeFormularioDto = new ErroDeFormularioDto("CPF/CNPJ","CPF e/ou CNPJ já está cadastrado em nossa base !");
+
+        return  erroDeFormularioDto;
     }
 
 }
