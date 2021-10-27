@@ -26,6 +26,9 @@ public class Proposta {
     @Column(nullable = false)
     private BigDecimal salario;
 
+    @Enumerated(EnumType.STRING)
+    private StatusElegivel statusElegivel;
+
     @Deprecated
     public Proposta(){
     }
@@ -40,5 +43,13 @@ public class Proposta {
 
     public long getId() {
         return id;
+    }
+
+    public void avaliaRetornoElegibilidade(String retornoElegivel) {
+            this.statusElegivel = StatusElegivel.ELEGIVEL;
+    }
+
+    public void gravaNaoElegivel(Proposta proposta) {
+        this.statusElegivel = StatusElegivel.NAO_ELEGIVEL;
     }
 }

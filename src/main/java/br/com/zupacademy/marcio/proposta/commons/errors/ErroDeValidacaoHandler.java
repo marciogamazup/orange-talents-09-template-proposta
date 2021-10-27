@@ -1,6 +1,7 @@
 package br.com.zupacademy.marcio.proposta.commons.errors;
 
 import br.com.zupacademy.marcio.proposta.commons.errors.exceptions.ExceptionCpfCnpjJaExiste;
+import br.com.zupacademy.marcio.proposta.commons.errors.exceptions.FeignExceptionNaoElegivel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -54,6 +55,15 @@ public class ErroDeValidacaoHandler {
     public ErroDeFormularioDto CpfCnpjJaExisteException(ExceptionCpfCnpjJaExiste e, WebRequest request) {
 
         ErroDeFormularioDto erroDeFormularioDto = new ErroDeFormularioDto("CPF/CNPJ","CPF e/ou CNPJ já está cadastrado em nossa base !");
+
+        return  erroDeFormularioDto;
+    }
+
+    @ExceptionHandler(value = {FeignExceptionNaoElegivel.class})
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErroDeFormularioDto ConsultaNaoElegivel(FeignExceptionNaoElegivel e, WebRequest request) {
+
+        ErroDeFormularioDto erroDeFormularioDto = new ErroDeFormularioDto("CPF/CNPJ","CPF e/ou CNPJ com restrições financeiras !");
 
         return  erroDeFormularioDto;
     }
