@@ -1,19 +1,14 @@
 package br.com.zupacademy.marcio.proposta.dto;
 
-public class SolicitaAnaliseDto {
+public class RetornoAnalisePropostaDto {
 
     private String documento;
     private String nome;
+    private String resultadoSolicitacao;
     private String idProposta;
 
     @Deprecated
-    public SolicitaAnaliseDto() {
-    }
-
-    public SolicitaAnaliseDto(String documento, String nome, String idProposta) {
-        this.documento = documento;
-        this.nome = nome;
-        this.idProposta = idProposta;
+    public RetornoAnalisePropostaDto() {
     }
 
     public String getDocumento() {
@@ -22,6 +17,10 @@ public class SolicitaAnaliseDto {
 
     public String getNome() {
         return nome;
+    }
+
+    public String getResultadoSolicitacao() {
+        return resultadoSolicitacao;
     }
 
     public String getIdProposta() {

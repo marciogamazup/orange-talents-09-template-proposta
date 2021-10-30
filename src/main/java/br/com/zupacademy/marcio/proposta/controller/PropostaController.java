@@ -2,8 +2,8 @@ package br.com.zupacademy.marcio.proposta.controller;
 
 import br.com.zupacademy.marcio.proposta.commons.utils.ConsultaElegivel;
 import br.com.zupacademy.marcio.proposta.dto.PropostaDto;
-import br.com.zupacademy.marcio.proposta.dto.RetornoAnliseDto;
-import br.com.zupacademy.marcio.proposta.dto.SolicitaAnaliseDto;
+import br.com.zupacademy.marcio.proposta.dto.RetornoAnalisePropostaDto;
+import br.com.zupacademy.marcio.proposta.dto.SolicitaAnalisePropostaDto;
 import br.com.zupacademy.marcio.proposta.entities.Proposta;
 import br.com.zupacademy.marcio.proposta.repository.PropostaRepository;
 import feign.FeignException;
@@ -37,11 +37,11 @@ public class PropostaController {
         Proposta proposta = dto.toModel(propostaRepository);
         propostaRepository.save(proposta);
 
-        SolicitaAnaliseDto solicitaAnaliseDto = new SolicitaAnaliseDto(dto.getCpfcnpj(), dto.getNome(),
+        SolicitaAnalisePropostaDto solicitaAnaliseCartaoDto = new SolicitaAnalisePropostaDto(dto.getCpfcnpj(), dto.getNome(),
                                                                         Long.toString(proposta.getId())) ;
 
         try {
-            RetornoAnliseDto retornoAnliseDto = consultaElegivel.consultaElegibilidade(solicitaAnaliseDto);
+            RetornoAnalisePropostaDto retornoAnliseDto = consultaElegivel.consultaElegibilidade(solicitaAnaliseCartaoDto);
             proposta.avaliaRetornoElegibilidade(retornoAnliseDto.getResultadoSolicitacao());
         } catch (FeignException.UnprocessableEntity exception) {
             proposta.gravaNaoElegivel(proposta);
@@ -51,4 +51,6 @@ public class PropostaController {
         URI endereco = uriComponentsBuilder.path("/propostas/{id}").build(proposta.getId());
         return ResponseEntity.created(endereco).build();
     }
+
+
 }

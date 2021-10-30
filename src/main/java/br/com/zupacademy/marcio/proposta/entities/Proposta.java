@@ -29,6 +29,9 @@ public class Proposta {
     @Enumerated(EnumType.STRING)
     private StatusElegivel statusElegivel;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Cartao cartao;
+
     @Deprecated
     public Proposta(){
     }
@@ -51,5 +54,9 @@ public class Proposta {
 
     public void gravaNaoElegivel(Proposta proposta) {
         this.statusElegivel = StatusElegivel.NAO_ELEGIVEL;
+    }
+
+    public void associaCartao(Cartao cartao) {
+        this.cartao = cartao;
     }
 }
