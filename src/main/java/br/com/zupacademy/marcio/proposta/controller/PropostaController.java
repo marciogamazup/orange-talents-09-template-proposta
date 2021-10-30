@@ -1,6 +1,7 @@
 package br.com.zupacademy.marcio.proposta.controller;
 
 import br.com.zupacademy.marcio.proposta.commons.utils.ConsultaElegivel;
+import br.com.zupacademy.marcio.proposta.dto.ConsultaStatusPropostaDto;
 import br.com.zupacademy.marcio.proposta.dto.PropostaDto;
 import br.com.zupacademy.marcio.proposta.dto.RetornoAnalisePropostaDto;
 import br.com.zupacademy.marcio.proposta.dto.SolicitaAnalisePropostaDto;
@@ -10,14 +11,12 @@ import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/propostas")
@@ -51,6 +50,20 @@ public class PropostaController {
         URI endereco = uriComponentsBuilder.path("/propostas/{id}").build(proposta.getId());
         return ResponseEntity.created(endereco).build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ConsultaStatusPropostaDto> acharUmaProposta(@PathVariable Long id) {
+
+        Optional<Proposta> propostaPorId = propostaRepository.findById(id);
+
+        if (propostaPorId.isPresent()) {
+
+            ConsultaStatusPropostaDto consultaPropostaPorId = new ConsultaStatusPropostaDto(propostaPorId.get());
+            return ResponseEntity.ok(consultaPropostaPorId);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 
 
 }

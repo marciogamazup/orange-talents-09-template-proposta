@@ -48,6 +48,30 @@ public class Proposta {
         return id;
     }
 
+    public String getCpfcnpj() {
+        return cpfcnpj;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public BigDecimal getSalario() {
+        return salario;
+    }
+
+    public StatusElegivel getStatusElegivel() {
+        return statusElegivel;
+    }
+
     public void avaliaRetornoElegibilidade(String retornoElegivel) {
             this.statusElegivel = StatusElegivel.ELEGIVEL;
     }
