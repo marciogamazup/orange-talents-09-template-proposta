@@ -8,7 +8,7 @@ import java.util.Base64;
 
 @Entity
 @Table(name = "tb_biometria")
-public class Biometria {
+public class  Biometria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
