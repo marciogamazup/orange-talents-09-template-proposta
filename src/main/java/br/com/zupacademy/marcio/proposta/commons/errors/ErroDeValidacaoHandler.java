@@ -1,5 +1,7 @@
 package br.com.zupacademy.marcio.proposta.commons.errors;
 
+import br.com.zupacademy.marcio.proposta.commons.errors.exceptions.Base64IllegalException;
+import br.com.zupacademy.marcio.proposta.commons.errors.exceptions.CartaoInexistenteException;
 import br.com.zupacademy.marcio.proposta.commons.errors.exceptions.ExceptionCpfCnpjJaExiste;
 import br.com.zupacademy.marcio.proposta.commons.errors.exceptions.FeignExceptionNaoElegivel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +66,24 @@ public class ErroDeValidacaoHandler {
     public ErroDeFormularioDto ConsultaNaoElegivel(FeignExceptionNaoElegivel e, WebRequest request) {
 
         ErroDeFormularioDto erroDeFormularioDto = new ErroDeFormularioDto("CPF/CNPJ","CPF e/ou CNPJ com restrições financeiras !");
+
+        return  erroDeFormularioDto;
+    }
+
+    @ExceptionHandler(value = {CartaoInexistenteException.class})
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErroDeFormularioDto HandleCartaoNaoExisteException(CartaoInexistenteException e, WebRequest request) {
+
+        ErroDeFormularioDto erroDeFormularioDto = new ErroDeFormularioDto("No. Cartão","Número de Cartão não existe  !");
+
+        return  erroDeFormularioDto;
+    }
+
+    @ExceptionHandler(value = {Base64IllegalException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErroDeFormularioDto HandleBase64IllegalException(Base64IllegalException e, WebRequest request) {
+
+        ErroDeFormularioDto erroDeFormularioDto = new ErroDeFormularioDto("FingerPrint","Valor do FingerPrint não está na Base64 !");
 
         return  erroDeFormularioDto;
     }
