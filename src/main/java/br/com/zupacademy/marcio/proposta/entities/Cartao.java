@@ -37,4 +37,8 @@ public class Cartao {
         this.numero = numero;
         this.proposta = proposta;
     }
+
+    public String getNumero() {
+        return numero;
+    }
 }

@@ -1,9 +1,6 @@
 package br.com.zupacademy.marcio.proposta.commons.errors;
 
-import br.com.zupacademy.marcio.proposta.commons.errors.exceptions.Base64IllegalException;
-import br.com.zupacademy.marcio.proposta.commons.errors.exceptions.CartaoInexistenteException;
-import br.com.zupacademy.marcio.proposta.commons.errors.exceptions.ExceptionCpfCnpjJaExiste;
-import br.com.zupacademy.marcio.proposta.commons.errors.exceptions.FeignExceptionNaoElegivel;
+import br.com.zupacademy.marcio.proposta.commons.errors.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -75,6 +72,15 @@ public class ErroDeValidacaoHandler {
     public ErroDeFormularioDto HandleCartaoNaoExisteException(CartaoInexistenteException e, WebRequest request) {
 
         ErroDeFormularioDto erroDeFormularioDto = new ErroDeFormularioDto("No. Cartão","Número de Cartão não existe  !");
+
+        return  erroDeFormularioDto;
+    }
+
+    @ExceptionHandler(value = {CartaoJaBloqueadoException.class})
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErroDeFormularioDto HandleCartaoJaBloqueadoException(CartaoJaBloqueadoException e, WebRequest request) {
+
+        ErroDeFormularioDto erroDeFormularioDto = new ErroDeFormularioDto("No. Cartão","Cartão já foi bloqueado anteriormente !");
 
         return  erroDeFormularioDto;
     }
