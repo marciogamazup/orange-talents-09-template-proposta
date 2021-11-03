@@ -2,7 +2,7 @@ package br.com.zupacademy.marcio.proposta.repository;
 
 import br.com.zupacademy.marcio.proposta.entities.Cartao;
 import br.com.zupacademy.marcio.proposta.entities.Proposta;
-import br.com.zupacademy.marcio.proposta.entities.StatusElegivel;
+import br.com.zupacademy.marcio.proposta.entities.enums.StatusElegivel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

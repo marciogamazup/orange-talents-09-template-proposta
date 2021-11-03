@@ -1,5 +1,7 @@
 package br.com.zupacademy.marcio.proposta.entities;
 
+import br.com.zupacademy.marcio.proposta.entities.enums.Status;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -23,6 +25,9 @@ public class Cartao {
     @Column(nullable = false)
     private String numero;
 
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
     @OneToOne(mappedBy = "cartao")
     private Proposta proposta;
 
@@ -40,5 +45,9 @@ public class Cartao {
 
     public String getNumero() {
         return numero;
+    }
+
+    public void BloqueiaCartao(){
+        this.status = Status.BLOQUEADO;
     }
 }

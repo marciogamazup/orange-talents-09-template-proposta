@@ -1,5 +1,7 @@
 package br.com.zupacademy.marcio.proposta.entities;
 
+import br.com.zupacademy.marcio.proposta.entities.enums.StatusElegivel;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 

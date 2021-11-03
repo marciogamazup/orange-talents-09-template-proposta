@@ -4,7 +4,7 @@ import br.com.zupacademy.marcio.proposta.commons.utils.ConsultaCartao;
 import br.com.zupacademy.marcio.proposta.dto.RetornoBuscaCartaoAprovadoDto;
 import br.com.zupacademy.marcio.proposta.entities.Cartao;
 import br.com.zupacademy.marcio.proposta.entities.Proposta;
-import br.com.zupacademy.marcio.proposta.entities.StatusElegivel;
+import br.com.zupacademy.marcio.proposta.entities.enums.StatusElegivel;
 import br.com.zupacademy.marcio.proposta.repository.PropostaRepository;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;

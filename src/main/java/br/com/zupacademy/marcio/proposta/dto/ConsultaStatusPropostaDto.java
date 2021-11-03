@@ -1,7 +1,7 @@
 package br.com.zupacademy.marcio.proposta.dto;
 
 import br.com.zupacademy.marcio.proposta.entities.Proposta;
-import br.com.zupacademy.marcio.proposta.entities.StatusElegivel;
+import br.com.zupacademy.marcio.proposta.entities.enums.StatusElegivel;
 
 public class ConsultaStatusPropostaDto {
 
