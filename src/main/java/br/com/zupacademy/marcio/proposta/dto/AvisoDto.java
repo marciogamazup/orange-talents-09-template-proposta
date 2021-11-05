@@ -6,7 +6,7 @@ import br.com.zupacademy.marcio.proposta.entities.Cartao;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class AvisoDto {
 
@@ -14,26 +14,26 @@ public class AvisoDto {
     private String destino;
     @NotNull
     @FutureOrPresent
-    private LocalDateTime validoate;
+    private LocalDate validoAte;
 
     @Deprecated
     public AvisoDto() {
     }
 
-    public AvisoDto(String destino, LocalDateTime validoate) {
+    public AvisoDto(String destino, LocalDate validoAte) {
         this.destino = destino;
-        this.validoate = validoate;
+        this.validoAte = validoAte;
     }
 
     public String getDestino() {
         return destino;
     }
 
-    public LocalDateTime getValidoate() {
-        return validoate;
+    public LocalDate getValidoAte() {
+        return validoAte;
     }
 
     public Aviso toModel(String ipcliente, String useragent, Cartao cartao) {
-        return new Aviso(destino, ipcliente, useragent, validoate, cartao);
+        return new Aviso(destino, ipcliente, useragent, validoAte, cartao);
     }
 }

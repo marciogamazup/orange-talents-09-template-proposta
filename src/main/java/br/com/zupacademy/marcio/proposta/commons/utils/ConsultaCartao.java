@@ -1,8 +1,6 @@
 package br.com.zupacademy.marcio.proposta.commons.utils;
 
-import br.com.zupacademy.marcio.proposta.dto.RespostaSolicitaBloqueioCartaoDto;
-import br.com.zupacademy.marcio.proposta.dto.RetornoBuscaCartaoAprovadoDto;
-import br.com.zupacademy.marcio.proposta.dto.SolicitaBloqueioCartaoDto;
+import br.com.zupacademy.marcio.proposta.dto.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,4 +15,7 @@ public interface ConsultaCartao {
 
     @PostMapping(value = "/{id}/bloqueios")
     RespostaSolicitaBloqueioCartaoDto solicitaBloqueio(@RequestBody SolicitaBloqueioCartaoDto dto, @PathVariable String id);
+
+    @PostMapping(value = "/{id}/avisos")
+    RespostaAvisaViagemDto solicitaAvisoViagem(@RequestBody SolicitaAvisoViagemDto dto, @PathVariable String id);
 }
