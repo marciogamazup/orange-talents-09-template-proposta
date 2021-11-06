@@ -94,4 +94,13 @@ public class ErroDeValidacaoHandler {
         return  erroDeFormularioDto;
     }
 
+    @ExceptionHandler(value = {CartaoJaAssociadaACarteiraException.class})
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErroDeFormularioDto HandleCartaoJaAssociadoACarteiraException(CartaoJaAssociadaACarteiraException e, WebRequest request) {
+
+        ErroDeFormularioDto erroDeFormularioDto = new ErroDeFormularioDto("No. Cartão","Cartão já está associado a essa carteira !");
+
+        return  erroDeFormularioDto;
+    }
+
 }

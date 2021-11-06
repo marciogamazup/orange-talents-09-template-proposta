@@ -50,4 +50,8 @@ public class Cartao {
     public void BloqueiaCartao(){
         this.status = Status.BLOQUEADO;
     }
+
+    public Proposta getProposta() {
+        return proposta;
+    }
 }

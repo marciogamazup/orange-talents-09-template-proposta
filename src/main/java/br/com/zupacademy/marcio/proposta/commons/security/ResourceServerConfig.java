@@ -1,4 +1,4 @@
-package br.com.zupacademy.marcio.proposta.commons.sercurity;
+package br.com.zupacademy.marcio.proposta.commons.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -21,6 +21,7 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
                         .antMatchers(HttpMethod.POST, "/biometria/**").hasAuthority("SCOPE_escopo-proposta")
                         .antMatchers(HttpMethod.POST, "/bloqueios/**").hasAuthority("SCOPE_escopo-proposta")
                         .antMatchers(HttpMethod.POST, "/avisos/**").hasAuthority("SCOPE_escopo-proposta")
+                        .antMatchers(HttpMethod.POST, "/carteiras/**").hasAuthority("SCOPE_escopo-proposta")
                         .antMatchers(HttpMethod.GET, "/actuator/**").hasAuthority("SCOPE_escopo-proposta")
                         .anyRequest().authenticated()
         ).oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);

@@ -18,4 +18,7 @@ public interface ConsultaCartao {
 
     @PostMapping(value = "/{id}/avisos")
     RespostaAvisaViagemDto solicitaAvisoViagem(@RequestBody SolicitaAvisoViagemDto dto, @PathVariable String id);
+
+    @PostMapping(value = "/{id}/carteiras")
+    RespostaAssoiciaCartaoCarteiraDto solicitaAssociacaoCartaoCarteira(@RequestBody SolicitaAssociaCartaoCarteiraDto dto, @PathVariable String id);
 }
