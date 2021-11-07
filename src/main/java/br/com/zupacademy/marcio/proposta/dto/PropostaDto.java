@@ -1,10 +1,13 @@
 package br.com.zupacademy.marcio.proposta.dto;
 
 import br.com.zupacademy.marcio.proposta.commons.errors.exceptions.ExceptionCpfCnpjJaExiste;
+import br.com.zupacademy.marcio.proposta.commons.security.CryptoConverter;
 import br.com.zupacademy.marcio.proposta.commons.validators.CpfCnpj;
 import br.com.zupacademy.marcio.proposta.entities.Proposta;
 import br.com.zupacademy.marcio.proposta.repository.PropostaRepository;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
+import javax.persistence.Convert;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,6 +19,7 @@ public class PropostaDto {
 
     @NotBlank
     @CpfCnpj
+    @Convert(converter = CryptoConverter.class)
     private String cpfcnpj;
 
     @NotBlank

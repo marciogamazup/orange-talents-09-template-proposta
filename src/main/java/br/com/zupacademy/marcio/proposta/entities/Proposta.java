@@ -1,5 +1,6 @@
 package br.com.zupacademy.marcio.proposta.entities;
 
+import br.com.zupacademy.marcio.proposta.commons.security.CryptoConverter;
 import br.com.zupacademy.marcio.proposta.entities.enums.StatusElegivel;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class Proposta {
     private long id;
 
     @Column(nullable = false)
+    @Convert(converter = CryptoConverter.class)
     private String cpfcnpj;
 
     @Column(nullable = false)
